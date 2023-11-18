@@ -20,6 +20,8 @@ install_requires = [
     "flaml",
     "python-dotenv",
     "tiktoken",
+    "fastapi",
+    "uvicorn[standard]"
 ]
 
 setuptools.setup(

@@ -5,6 +5,7 @@
 [![](https://img.shields.io/discord/1153072414184452236?logo=discord&style=flat)](https://discord.gg/pAbnFJrkgZ)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40pyautogen)](https://twitter.com/pyautogen)
 
+- added websocket API from https://github.com/bonadio/autogenwebdemo.git
 
 # AutoGen
 
