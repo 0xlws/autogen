@@ -1,7 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, WebSocket
 from .chat_session import send_to_client, receive_from_client, ChatSession
-from .agents import assistant, user_proxy
 
 
 class ServerManager:

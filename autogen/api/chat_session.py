@@ -1,7 +1,8 @@
 import asyncio
 
-class ChatSession():
-    def __init__(self, chat_id=None, websocket=None, assistant = None, user_proxy = None):
+
+class ChatSession:
+    def __init__(self, chat_id=None, websocket=None, assistant=None, user_proxy=None):
         self.websocket = websocket
         self.chat_id = chat_id
         self.client_sent_queue = asyncio.Queue()
@@ -16,23 +17,21 @@ class ChatSession():
         self.user_proxy.set_queues(self.client_sent_queue, self.client_receive_queue)
 
     async def begin_conversation(self, message):
-        await self.user_proxy.a_initiate_chat(
-        self.assistant,
-        clear_history=True,
-        message=message
-        )
+        await self.user_proxy.a_initiate_chat(self.assistant, clear_history=True, message=message)
 
-    async def send_to_client(chat_session):
-        while True:
-            reply = await chat_session.client_receive_queue.get()
-            if reply and reply == "DO_FINISH":
-                chat_session.client_receive_queue.task_done()
-                break
-            await chat_session.websocket.send_text(reply)
+
+async def send_to_client(chat_session):
+    while True:
+        reply = await chat_session.client_receive_queue.get()
+        if reply and reply == "DO_FINISH":
             chat_session.client_receive_queue.task_done()
-            await asyncio.sleep(1)
+            break
+        await chat_session.websocket.send_text(reply)
+        chat_session.client_receive_queue.task_done()
+        await asyncio.sleep(1)
 
-    async def receive_from_client(chat_session):
+
+async def receive_from_client(chat_session):
     while True:
         data = await chat_session.websocket.receive_text()
         if data and data == "DO_FINISH":
