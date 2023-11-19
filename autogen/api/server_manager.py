@@ -15,7 +15,7 @@ class ServerManager:
             allow_headers=["*"],  # Allows all headers
         )
         self.app.websocket("/ws/{chat_id}")(self.websocket_endpoint)
-        if assistant is None 
+        if assistant is None:
             raise Exception("AssistantAgent missing")
         if user_proxy is None:
             raise Exception("UserProxyAPIAgent missing")
